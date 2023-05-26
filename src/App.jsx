@@ -1,4 +1,4 @@
-import AppRoute from "./routes/index.jsx";
+import AppRoute from "./routes/route.jsx";
 
 const App = () => {
   return (
