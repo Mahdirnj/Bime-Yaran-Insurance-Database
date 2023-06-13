@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -22,7 +21,7 @@ body {
   background-color: white;
   min-width: 320px;
   min-height: 100vh;
-  font-family: Yekan, sans-serif;
+  font-family: Yekan, sans-serif !important;
 }
 
 @font-face {
@@ -41,7 +40,14 @@ body {
   border-radius: 50px;
   cursor: pointer;
 }
+.btn span {
+  position: relative;
+  top: 1px;
+}
 .m-btn {
   font-family: Yekan, sans-serif !important;
   font-size: 1.1rem !important;
+}
+a {
+  cursor: pointer;
 }

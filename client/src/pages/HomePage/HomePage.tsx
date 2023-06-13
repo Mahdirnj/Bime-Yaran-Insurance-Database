@@ -6,6 +6,8 @@ import {useNavigate} from "react-router-dom";
 const HomePage = () => {
     const navigate = useNavigate()
     return(
+        <div>
+            <Header />
         <div className="bg-white">
             <div className="relative isolate px-6 pt-20 lg:px-8">
                 <div
@@ -58,6 +60,7 @@ const HomePage = () => {
                     />
                 </div>
             </div>
+        </div>
         </div>
     )
 }

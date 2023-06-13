@@ -9,7 +9,7 @@ import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import {useNavigate} from "react-router-dom";
-
+import "./header.css"
 const solutions = [
     { name: 'بیمه عمر', description: ' بیمه اشخاص یکی از مهمترین شاخه های رفاه اجتماعی محسوب می شود', href: '#', icon: ElderlyIcon },
     { name: 'بیمه اتوموبیل', description: 'این گروه بیمه را می‌توان به دو بیمه بدنه و بیمه شخص ثالث و سرنشین تقسیم کرد', href: '#', icon: DirectionsCarIcon },
@@ -20,20 +20,20 @@ const callsToAction = [
     { name: 'ویدیو آموزشی', href: '#', icon: PlayCircleIcon },
     { name: 'تماس با واحد فروش', href: '#', icon: PhoneIcon },
 ]
-const Header = () => {
+const Header = (props) => {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const navigate = useNavigate()
     return(
         <header className="absolute inset-x-0 top-0 z-50">
-            <nav className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+            <nav id="nav" className="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
                 <div className="flex lg:flex-1">
-                    <div className="btn">
-                        <UserIcon style={{display: "inline-block", position: "relative", top: "3px", marginRight: "8px"}} className="h-4 w-4" aria-hidden="true" />
-                        <a onClick={() => {
-                            navigate("/signin");
-                        }
-                        } className="text-md font-semibold leading-6">
-                            ورود
+                    <div className="btn" onClick={() => {
+                        navigate("/signin");
+                    }
+                    }>
+                        <UserIcon style={{display: "inline-block", position: "relative", top: '3px', marginRight: "8px"}} className="h-4 w-4" aria-hidden="true" />
+                        <a  className="text-md font-semibold leading-6">
+                            <span>ورود</span>
                         </a>
                     </div>
                 </div>
@@ -44,20 +44,26 @@ const Header = () => {
                         onClick={() => setMobileMenuOpen(true)}
                     >
                         <span className="sr-only">Open main menu</span>
-                        <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+                        <Bars3Icon style={{color: props.color}} className="h-6 w-6" aria-hidden="true" />
                     </button>
                 </div>
                 <div  className="hidden lg:flex lg:gap-x-12">
-                    <a href="" className="text-lg leading-6 text-gray-900">
+                    <a style={{color: props.color}} onClick={() => {
+                        navigate("/contact")
+                    }
+                    } className="text-lg leading-6 text-gray-900">
                         تماس با ما
                     </a>
-                    <a href="" className="text-lg leading-6 text-gray-900">
+                    <a style={{color: props.color}} onClick={() => {
+                        navigate("/about")
+                        }
+                    } className="text-lg leading-6 text-gray-900">
                         درباره ما
                     </a>
-                    <a href="" className="text-lg leading-6 text-gray-900">
+                    <a style={{color: props.color}} href="" className="text-lg leading-6 text-gray-900">
                         <Popover className="relative">
-                            <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                                <span className="text-lg leading-6 text-gray-900">انواع بیمه ها</span>
+                            <Popover.Button style={{color: props.color}} className="popover-btn inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+                                <span style={{color: props.color}} className="text-lg leading-6 text-gray-900">انواع بیمه ها</span>
                                 <ChevronDownIcon className="h-4 w-4" aria-hidden="true" />
                             </Popover.Button>
 
@@ -105,12 +111,15 @@ const Header = () => {
                             </Transition>
                         </Popover>
                     </a>
-                    <a href="" className="text-lg leading-6 text-gray-900">
+                    <a style={{color: props.color}} href="" className="text-lg leading-6 text-gray-900">
                         مراکز خدمات بیمه
                     </a>
                 </div>
                 <div className="hidden lg:flex lg:flex-1 lg:justify-end flex lg:flex-1">
-                    <a href="#" className="-m-1.5 p-1.5">
+                    <a onClick={() => {
+                        navigate("/")
+                    }
+                    } className="-m-1.5 p-1.5">
                         <span className="sr-only">بیمه یاران</span>
                         <img
                             className="h-12 w-auto"
@@ -124,7 +133,10 @@ const Header = () => {
                 <div className="fixed inset-0 z-50" />
                 <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                     <div className="flex items-center justify-between">
-                        <a href="#" className="-m-1.5 p-1.5">
+                        <a onClick={() => {
+                            navigate("/")
+                        }
+                        } className="-m-1.5 p-1.5">
                             <span className="sr-only">Your Company</span>
                             <img
                                 className="h-8 w-auto"
@@ -149,12 +161,17 @@ const Header = () => {
                                 >
                                     مراکز خدمات بیمه
                                 </a>
-                                <a
+                                <a onClick={() => {
+                                    navigate("/about")
+                                }
+                                }
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                 >
                                     درباره ما
                                 </a>
-                                <a
+                                <a onClick={() => {
+                                    navigate("/contact")
+                                    }}
                                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                 >
                                     تماس با ما
@@ -162,7 +179,9 @@ const Header = () => {
                             </div>
                             <div className="py-6">
                                 <a
-                                    href="#"
+                                    onClick={() => {
+                                        navigate("/signin")
+                                    }}
                                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                                 >
                                     ورود

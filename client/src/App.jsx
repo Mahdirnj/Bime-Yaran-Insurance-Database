@@ -1,11 +1,11 @@
 import AppRoute from "./routes/route.tsx";
-import Header from "./components/Header/Header.tsx";
+import Footer from "./components/Footer/Footer.tsx";
 
 const App = () => {
   return (
   <div>
-    <Header />
     <AppRoute />
+    <Footer />
   </div>
   )
 }
