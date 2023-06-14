@@ -10,12 +10,6 @@ import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import {useNavigate} from "react-router-dom";
 import "./header.css"
-const solutions = [
-    { name: 'بیمه عمر', description: ' بیمه اشخاص یکی از مهمترین شاخه های رفاه اجتماعی محسوب می شود', href: '#', icon: ElderlyIcon },
-    { name: 'بیمه اتوموبیل', description: 'این گروه بیمه را می‌توان به دو بیمه بدنه و بیمه شخص ثالث و سرنشین تقسیم کرد', href: '#', icon: DirectionsCarIcon },
-    { name: 'بیمه آتش سوزی', description: "موضوع بیمه آتش ‌سوزی، تأمین خسارت و جبران زیان‌های مالی و مادی است", href: '#', icon: LocalFireDepartmentIcon },
-    { name: 'بیمه پزشکان', description: 'با توجه به مسئولیتهای بیشماری که هریک از ما در قبال سایر افراد جامعه داریم می توان تعداد بسیار متنوعی از بیمه های مسئولیت را برشمرد', href: '#', icon: MedicalServicesIcon },
-]
 const callsToAction = [
     { name: 'ویدیو آموزشی', href: '#', icon: PlayCircleIcon },
     { name: 'تماس با واحد فروش', href: '#', icon: PhoneIcon },
@@ -60,7 +54,6 @@ const Header = (props) => {
                     } className="text-lg leading-6 text-gray-900">
                         درباره ما
                     </a>
-                    <a style={{color: props.color}} href="" className="text-lg leading-6 text-gray-900">
                         <Popover className="relative">
                             <Popover.Button style={{color: props.color}} className="popover-btn inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                                 <span style={{color: props.color}} className="text-lg leading-6 text-gray-900">انواع بیمه ها</span>
@@ -79,20 +72,69 @@ const Header = (props) => {
                                 <Popover.Panel className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
                                     <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
                                         <div className="p-4">
-                                            {solutions.map((item) => (
-                                                <div style={{textAlign: "end"}} key={item.name} className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-100">
+                                                <div style={{textAlign: "end", transition: "all 0.4s"}} className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-100">
                                                     <div>
-                                                        <a href={item.href} className="text-gray-900" style={{fontSize: "1.01rem"}}>
-                                                            {item.name}
+                                                        <a onClick={() => {
+                                                            navigate("/LifeInsurance")
+                                                        }
+                                                        } className="text-gray-900" style={{fontSize: "1.01rem"}}>
+                                                            بیمه عمر
                                                             <span className="absolute inset-0" />
                                                         </a>
-                                                        <p className="mt-1 text-gray-600">{item.description}</p>
+                                                        <p className="mt-1 text-gray-600">بیمه اشخاص یکی از مهمترین شاخه های رفاه اجتماعی محسوب می شود</p>
                                                     </div>
-                                                    <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                                        <item.icon className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
+                                                    <div  className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                                        <ElderlyIcon style={{transition: "all 0.5s"}} className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
                                                     </div>
                                                 </div>
-                                            ))}
+
+                                            <div style={{textAlign: "end", transition: "all 0.4s"}}  className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-100">
+                                                <div>
+                                                    <a onClick={() => {
+                                                        navigate("/CarInsurance")
+                                                    }
+                                                    } className="text-gray-900" style={{fontSize: "1.01rem"}}>
+                                                        بیمه اتوموبیل
+                                                        <span className="absolute inset-0" />
+                                                    </a>
+                                                    <p className="mt-1 text-gray-600">این گروه بیمه را می‌توان به دو بیمه بدنه و بیمه شخص ثالث و سرنشین تقسیم کرد</p>
+                                                </div>
+                                                <div  className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                                    <DirectionsCarIcon style={{transition: "all 0.5s"}} className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
+                                                </div>
+                                            </div>
+
+                                            <div style={{textAlign: "end", transition: "all 0.4s"}} className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-100">
+                                                <div>
+                                                    <a onClick={() => {
+                                                        navigate("/FireInsurance")
+                                                    }
+                                                    } className="text-gray-900" style={{fontSize: "1.01rem"}}>
+                                                        بیمه آتش سوزی
+                                                        <span className="absolute inset-0" />
+                                                    </a>
+                                                    <p className="mt-1 text-gray-600">موضوع بیمه آتش ‌سوزی، تأمین خسارت و جبران زیان‌های مالی و مادی است</p>
+                                                </div>
+                                                <div  className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                                    <LocalFireDepartmentIcon style={{transition: "all 0.5s"}} className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
+                                                </div>
+                                            </div>
+
+                                            <div style={{textAlign: "end", transition: "all 0.4s"}} className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-100">
+                                                <div>
+                                                    <a onClick={() => {
+                                                        navigate("/LiabilityInsurance")
+                                                    }
+                                                    } className="text-gray-900" style={{fontSize: "1.01rem"}}>
+                                                        بیمه مسئولیت
+                                                        <span className="absolute inset-0" />
+                                                    </a>
+                                                    <p className="mt-1 text-gray-600">با توجه به مسئولیتهای بیشماری که هریک از ما در قبال سایر افراد جامعه داریم می توان تعداد بسیار متنوعی از بیمه های مسئولیت را برشمرد</p>
+                                                </div>
+                                                <div  className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                                    <MedicalServicesIcon style={{transition: "all 0.5s"}} className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
+                                                </div>
+                                            </div>
                                         </div>
                                         <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                                             {callsToAction.map((item) => (
@@ -101,7 +143,7 @@ const Header = (props) => {
                                                     href={item.href}
                                                     className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-gray-900 hover:bg-gray-100"
                                                 >
-                                                    <item.icon className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
+                                                    <item.icon  className="h-5 w-5 flex-none text-gray-400" aria-hidden="true" />
                                                     {item.name}
                                                 </a>
                                             ))}
@@ -110,8 +152,10 @@ const Header = (props) => {
                                 </Popover.Panel>
                             </Transition>
                         </Popover>
-                    </a>
-                    <a style={{color: props.color}} href="" className="text-lg leading-6 text-gray-900">
+                    <a onClick={() => {
+                        navigate("/branch")
+                    }
+                    } style={{color: props.color}} className="text-lg leading-6 text-gray-900">
                         مراکز خدمات بیمه
                     </a>
                 </div>

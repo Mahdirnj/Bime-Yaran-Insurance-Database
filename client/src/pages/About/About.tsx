@@ -1,12 +1,35 @@
 import Header from "../../components/Header/Header";
-
-const stats = [
-    { name: 'شعبه سراسر کشور', value: '12' },
-    { name: 'کاربران', value: '300+' },
-    { name: 'قرارداد بسته شده', value: '40' },
-]
+import useDocumentTitle from "../../hook/useDocumentTitle"
+import Axios from "axios";
+import {useEffect, useState} from "react";
 
 const About = () => {
+    const [usersCount, setUsersCount] = useState("")
+    const [branchesCount, setBranchesCount] = useState("")
+    const [contractsCount, setContractsCount] = useState("")
+    const stats = [
+        { name: 'شعبه سراسر کشور', value: branchesCount },
+        { name: 'کاربران', value: "+" + usersCount },
+        { name: 'قرارداد بسته شده', value: contractsCount },
+    ]
+    useEffect(() => {
+        Axios.post("http://localhost:3001/total-users").then((response) => {
+            setUsersCount(response.data[0]["COUNT(*)"]);
+            console.log(response);
+        })
+        Axios.post("http://localhost:3001/total-branches").then((response) => {
+            setBranchesCount(response.data[0]["COUNT(*)"]);
+            console.log(response);
+        })
+        Axios.post("http://localhost:3001/total-contracts").then((response) => {
+            setContractsCount(response.data[0]["COUNT(*)"]);
+            console.log(response);
+        })
+    }, [])
+
+
+
+    useDocumentTitle('درباره ما - بیمه یاران')
     return (
         <div>
             <Header color = {"white"} />
@@ -44,7 +67,14 @@ const About = () => {
                 <div className="mt-20 mx-auto max-w-6xl lg:mx-0">
                     <h2 className="text-end text-4xl font-bold tracking-tight text-white sm:text-6xl">درباره ما</h2>
                     <p className="text-end mt-6 text-lg leading-8 text-gray-300">
-                        قصد خرید بیمه را دارید؟ نگران فرآیند‌های سخت خرید و استفاده از بیمه نباشید. ازکی به عنوان همراهی آگاه در کنار شما است تا بتوانید با دانش کافی بهترین بیمه‌ را انتخاب کنید
+                        قصد خرید بیمه را دارید؟ نگران فرآیند‌های سخت خرید و استفاده از بیمه نباشید.
+                        بیمه یاران به عنوان همراهی آگاه در کنار شما است تا بتوانید با دانش کافی بهترین بیمه‌ را انتخاب کنید
+                    </p>
+                    <p className="text-end mt-6 text-lg leading-8 text-gray-300">
+                        بیمه یاران در تمام مراحل خرید و استفاده از بیمه همراه شما است. به کمک بیمه یاران می‌توانید قبل از خرید،
+                        درباره انواع مختلف بیمه و پوشش‌های آن اطلاعات کامل را کسب کنید و سپس خدمات و قیمت‌های شرکت‌های
+                        گوناگون بیمه‌ای را با یکدیگر مقایسه نمایید. فرآیند خرید با بیمه یاران بسیار سریع و ساده انجام
+                        می‌شود. تمام مراحل آنلاین است و هیچ نیازی به مراجعه حضوری ندارید و این‌گونه در زمان صرفه‌جویی می‌کنید
                     </p>
                 </div>
                 <div className="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">

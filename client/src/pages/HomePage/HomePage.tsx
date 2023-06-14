@@ -2,8 +2,11 @@ import Header from "../../components/Header/Header"
 import {Button} from "@mui/material";
 import AddIcon from '@mui/icons-material/Add';
 import {useNavigate} from "react-router-dom";
+import useDocumentTitle from "../../hook/useDocumentTitle"
 
 const HomePage = () => {
+    useDocumentTitle('بیمه یاران | خرید آنلاین بیمه')
+
     const navigate = useNavigate()
     return(
         <div>

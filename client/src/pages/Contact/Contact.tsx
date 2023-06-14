@@ -3,7 +3,9 @@ import "./contact.css"
 import SendIcon from "@mui/icons-material/Send";
 import {Button} from "@mui/material";
 import Header from "../../components/Header/Header";
-function Contact() {
+import useDocumentTitle from "../../hook/useDocumentTitle"
+const Contact = () => {
+    useDocumentTitle('تماس با ما - بیمه یاران')
     return (
         <div>
             <Header color = {"white"} />
@@ -41,7 +43,7 @@ function Contact() {
                         </div>
                     </div>
                     <p className="text-end text-xs leading-3 text-gray-600 mt-4">با کلیک بر روی دکمه ی ارسال، با قوانین صندوق پستی بیمه یاران موافقت می کنید</p>
-                    <div className="flex items-center justify-center w-full">
+                    <div style={{marginBottom: '45px'}} className="flex items-center justify-center w-full">
                         <Button style={{marginTop: '15px'}} className="m-btn" variant="contained" startIcon={<SendIcon />}>ارسال</Button>                    </div>
                 </div>
             </div>
