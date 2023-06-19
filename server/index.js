@@ -64,7 +64,7 @@ app.post("/branches", (req, res) => {
 // SIGNUP, SIGNIN - Check Email availability for registering and login
 app.post("/check-email", (req, res) => {
     const email = req.body.email;
-    con.query("SELECT * FROM users WHERE email = ?",[email], (err, result) => {
+    con.query("SELECT * FROM users WHERE email = ? ",[email], (err, result) => {
         if(result.length > 0) {
             res.send("true")
         }
@@ -93,7 +93,8 @@ app.post("/register-user", (req, res) => {
     const user_id = req.body.user_id;
     const email = req.body.email;
     const password = req.body.password;
-    con.query("INSERT INTO users (user_id, email, password) VALUES (?, ?, ?)", [user_id, email, password], (err, result) => {
+    const user_type = "user";
+    con.query("INSERT INTO users (user_id, email, password, user_type) VALUES (?, ?, ?, ?)", [user_id, email, password, user_type], (err, result) => {
         if(result){
             res.send(result);
         }else{

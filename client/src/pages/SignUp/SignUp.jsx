@@ -11,6 +11,7 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [notRegisterable, setNotRegisterable] = useState(false)
     const [registered, setRegistered] = useState(false)
+    const [userType, setUserType] = useState("user")
     useDocumentTitle('ثبت نام در پنل کاربری بیمه یاران')
     const navigate = useNavigate()
     const handleRegister = (e) => {
@@ -32,7 +33,12 @@ const SignUp = () => {
                     console.log(response)
                 })
                 setTimeout(() => {
-                    navigate("/dashboard")
+                    navigate("/dashboard", {
+                        state: {
+                            user_email: email,
+                            user_type : userType
+                        }
+                    })
                 }, [4000])
             }
         })
