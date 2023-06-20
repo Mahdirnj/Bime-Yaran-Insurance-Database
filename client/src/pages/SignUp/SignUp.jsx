@@ -50,7 +50,7 @@ const SignUp = () => {
                     <p
                        className="text-light flex items-center mb-6 text-3xl font-semibold">
                         <img className="signin-logo w-8 h-8 mr-2"
-                             src="../../public/favicon/favicon-32x32.png"
+                             src="/favicon/favicon-32x32.png"
                              alt="logo" />
                         ثبت نام در بیمه یاران
                     </p>

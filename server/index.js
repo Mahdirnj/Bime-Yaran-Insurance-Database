@@ -20,7 +20,7 @@ app.post("/total-users", (req, res) => {
             res.send(result)
         }
         else {
-            res.send({message: "QUERY ERROR OR DATABASE MISMATCH"})
+            res.send(err)
         }
     })
 })
@@ -32,7 +32,7 @@ app.post("/total-branches", (req, res) => {
             res.send(result)
         }
         else {
-            res.send({message: "QUERY ERROR OR DATABASE MISMATCH"})
+            res.send(err)
         }
     })
 })
@@ -44,7 +44,7 @@ app.post("/total-contracts", (req, res) => {
             res.send(result)
         }
         else {
-            res.send({message: "QUERY ERROR OR DATABASE MISMATCH"})
+            res.send(err)
         }
     })
 })
@@ -56,7 +56,7 @@ app.post("/branches", (req, res) => {
             res.send(result)
         }
         else {
-            res.send({message: "QUERY ERROR OR DATABASE MISMATCH"})
+            res.send(err)
         }
     })
 })
@@ -98,11 +98,42 @@ app.post("/register-user", (req, res) => {
         if(result){
             res.send(result);
         }else{
-            res.send({message: "QUERY ERROR OR DATABASE MISMATCH"})
+            res.send(err)
         }
     })
 })
 
+
+// SIGNIN - Check User Type For Dashboard
+app.post("/check-user-type", (req, res) => {
+    const email = req.body.email;
+    con.query("SELECT user_type from users WHERE email = ?", [email], (err, result) => {
+        if(result){
+            res.send(result);
+        }else{
+            res.send(err)
+        }
+    })
+})
+
+
+// DASHBOARD - Add Branch
+app.post("/register-branch", (req, res) => {
+    const branch_id = req.body.branch_id;
+    console.log(branch_id)
+    const branch_name = req.body.branch_name;
+    const branch_address = req.body.branch_address;
+    const branch_phone = req.body.branch_phone;
+    const branch_type = req.body.branch_type;
+    con.query("INSERT INTO branches (branch_id, branch_name, branch_address, branch_phone, branch_type) VALUES (?, ?, ?, ?, ?)",
+        [branch_id, branch_name, branch_address, branch_phone, branch_type], (err, result) => {
+        if(result){
+            res.send(result);
+        }else{
+            res.send(err)
+        }
+    })
+})
 
 app.listen(3001, () => {
     console.log("MySQL Database server running...");

@@ -1,5 +1,5 @@
 import Axios from "axios";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -36,9 +36,18 @@ const Signin = () => {
                     if(response.data == true) {
                         setValidPassword(true)
                         setNotValidPassword(false)
+                        Axios.post("http://localhost:3001/check-user-type", {
+                            email: email
+                        }).then((response) => {
                         setTimeout(() => {
-                            navigate("/dashboard")
+                            navigate("/dashboard", {
+                                state: {
+                                    user_email: email,
+                                    user_type : response.data[0]["user_type"]
+                                }
+                            })
                         }, [4000])
+                        })
                     }
                     else {
                         setValidPassword(false)
@@ -77,7 +86,7 @@ const Signin = () => {
                                 <a
                                    className="flex items-center mb-6 text-3xl font-semibold text-gray-900 dark:text-white">
                                     <img className="signin-logo w-8 h-8 mr-2"
-                                         src="../../public/favicon/favicon-32x32.png"
+                                         src="/favicon/favicon-32x32.png"
                                          alt="logo" />
                                         ورود به پنل کاربری
                                 </a>
@@ -116,7 +125,7 @@ const Signin = () => {
                                                     <p>رمز عبور وارد شده صحیح نمی باشد</p>
                                                 </div>)
                                                 : null}
-                                            {validPassword ?
+                                            {validPassword && validEmail ?
                                                 (<div className="right-info">
                                                     <p>با موفقیت وارد شدید در حال انتقال به پنل</p>
                                                 </div>)
