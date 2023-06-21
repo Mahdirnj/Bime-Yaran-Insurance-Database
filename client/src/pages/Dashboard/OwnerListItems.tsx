@@ -17,7 +17,16 @@ const OwnerListItems = (props) => {
             <Divider sx={{my: 2}}/>
             <p style={{textAlign: 'center'}}>دسترسی ویژه</p>
             <Divider sx={{my: 2}}/>
-            <ListItemButton>
+            <ListItemButton
+                onClick={() => {
+                    navigate("/dashboard/admin", {
+                        state: {
+                            user_email: props.email,
+                            user_type : props.type
+                        }
+                    })
+                }}
+            >
                 <p className="drawer-list-item-text">مدیران</p>
                 <div className="drawer-list-item-icon">
                     <ListItemIcon>

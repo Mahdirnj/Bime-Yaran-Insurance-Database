@@ -117,7 +117,7 @@ app.post("/check-user-type", (req, res) => {
 })
 
 
-// DASHBOARD - Add Branch
+// DASHBOARD - BRANCHES - Add Branch
 app.post("/register-branch", (req, res) => {
     const branch_id = req.body.branch_id;
     console.log(branch_id)
@@ -127,6 +127,60 @@ app.post("/register-branch", (req, res) => {
     const branch_type = req.body.branch_type;
     con.query("INSERT INTO branches (branch_id, branch_name, branch_address, branch_phone, branch_type) VALUES (?, ?, ?, ?, ?)",
         [branch_id, branch_name, branch_address, branch_phone, branch_type], (err, result) => {
+        if(result){
+            res.send(result);
+        }else{
+            res.send(err)
+        }
+    })
+})
+
+// DASHBOARD - BRANCHES - Delete Branch
+app.post("/delete-branch", (req, res) => {
+    const branch_id = req.body.branch_id;
+    con.query("DELETE FROM branches WHERE branch_id = ?",[branch_id], (err, result) => {
+            if(result){
+                res.send(result);
+            }else{
+                res.send(err)
+            }
+        })
+})
+
+// DASHBOARD - BRANCHES - Edit Branch
+app.post("/edit-branch", (req, res) => {
+    const branch_id = req.body.branch_id;
+    console.log(branch_id)
+    const branch_name = req.body.branch_name;
+    const branch_address = req.body.branch_address;
+    const branch_phone = req.body.branch_phone;
+    const branch_type = req.body.branch_type;
+    con.query("UPDATE branches SET branch_name = ?, branch_phone = ?, branch_address = ?, branch_type = ? WHERE branch_id = ?"
+        , [branch_name, branch_phone, branch_address, branch_type, branch_id], (err, result) => {
+            if(result){
+                res.send(result);
+            }else{
+                res.send(err)
+            }
+        })
+})
+ //DASHBOARD - BRANCHES, Check branch id availability for edit
+app.post("/check-branch", (req, res) => {
+    const branch_id = req.body.branch_id;
+    con.query("SELECT * FROM branches WHERE branch_id = ?",[branch_id], (err, result) => {
+        if(result.length > 0) {
+            res.send("true")
+        }
+        else {
+            res.send("false")
+        }
+    })
+})
+
+// DASHBOARD - ADMINS - Get total admins
+app.post("/admins", (req, res) => {
+    const user_type = req.body.user_type;
+    con.query("SELECT * from users WHERE user_type = ?", [user_type], (err, result) => {
         if(result){
             res.send(result);
         }else{

@@ -12,6 +12,7 @@ import LiabilityInsurance from "../pages/Liability-Insurance/LiabilityInsurance"
 import LifeInsurance from "../pages/Life-Insurance/LifeInsurance";
 
 import Branches from "../pages/Dashboard/pages/Branches"
+import Admin from "../pages/Dashboard/pages/Admin"
 const AppRoute = () => {
     return (
         <Routes>
@@ -29,6 +30,7 @@ const AppRoute = () => {
 
 
             <Route path={'/dashboard/branch'} element={<Branches />} />
+            <Route path={'/dashboard/admin'} element={<Admin />} />
 
 
         </Routes>
