@@ -9,7 +9,7 @@ import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import "./Dashboard.css"
 import Divider from "@mui/material/Divider";
-const AdminListItems = () => {
+const AdminListItems = (props) => {
     const navigate = useNavigate()
 
     return (
@@ -17,7 +17,15 @@ const AdminListItems = () => {
             <Divider sx={{ my: 2 }} />
             <p style={{textAlign: 'center'}}>دسترسی مدیر</p>
             <Divider sx={{ my: 2 }} />
-            <ListItemButton>
+            <ListItemButton onClick={() => {
+                navigate("/dashboard/users", {
+                    state: {
+                        user_email: props.email,
+                        user_type : props.type,
+                        user_id : props.id
+                    }
+                })
+            }}>
                 <p className="drawer-list-item-text">کاربران</p>
                 <div className="drawer-list-item-icon">
                     <ListItemIcon>
@@ -25,7 +33,17 @@ const AdminListItems = () => {
                     </ListItemIcon>
                 </div>
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton
+                onClick={() => {
+                    navigate("/dashboard/contracts", {
+                        state: {
+                            user_email: props.email,
+                            user_type : props.type,
+                            user_id : props.id
+                        }
+                    })
+                }}
+            >
                 <p className="drawer-list-item-text">بیمه نامه ها</p>
                 <div className="drawer-list-item-icon">
                     <ListItemIcon>
@@ -33,7 +51,17 @@ const AdminListItems = () => {
                     </ListItemIcon>
                 </div>
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton
+                onClick={() => {
+                    navigate("/dashboard/ApproveContract", {
+                        state: {
+                            user_email: props.email,
+                            user_type : props.type,
+                            user_id : props.id
+                        }
+                    })
+                }}
+            >
                 <p className="drawer-list-item-text">تایید بیمه نامه</p>
                 <div className="drawer-list-item-icon">
                     <ListItemIcon>
@@ -41,7 +69,15 @@ const AdminListItems = () => {
                     </ListItemIcon>
                 </div>
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton onClick={() => {
+                navigate("/dashboard/transaction", {
+                    state: {
+                        user_email: props.email,
+                        user_type : props.type,
+                        user_id : props.id
+                    }
+                })
+            }}>
                 <p className="drawer-list-item-text">تراکنش ها</p>
                 <div className="drawer-list-item-icon">
                     <ListItemIcon>

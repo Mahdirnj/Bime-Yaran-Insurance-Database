@@ -7,7 +7,6 @@ import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/
 import ElderlyIcon from '@mui/icons-material/Elderly';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
-import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import {useNavigate} from "react-router-dom";
 import "./header.css"
 const callsToAction = [
@@ -117,22 +116,6 @@ const Header = (props) => {
                                                 </div>
                                                 <div  className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                                     <LocalFireDepartmentIcon style={{transition: "all 0.5s"}} className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
-                                                </div>
-                                            </div>
-
-                                            <div style={{textAlign: "end", transition: "all 0.4s"}} className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-100">
-                                                <div>
-                                                    <a onClick={() => {
-                                                        navigate("/LiabilityInsurance")
-                                                    }
-                                                    } className="text-gray-900" style={{fontSize: "1.01rem"}}>
-                                                        بیمه مسئولیت
-                                                        <span className="absolute inset-0" />
-                                                    </a>
-                                                    <p className="mt-1 text-gray-600">با توجه به مسئولیتهای بیشماری که هریک از ما در قبال سایر افراد جامعه داریم می توان تعداد بسیار متنوعی از بیمه های مسئولیت را برشمرد</p>
-                                                </div>
-                                                <div  className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                                    <MedicalServicesIcon style={{transition: "all 0.5s"}} className="h-6 w-6 text-gray-600 group-hover:text-indigo-600" aria-hidden="true" />
                                                 </div>
                                             </div>
                                         </div>

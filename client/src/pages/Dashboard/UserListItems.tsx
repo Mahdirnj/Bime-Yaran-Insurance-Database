@@ -16,7 +16,8 @@ return(
                 navigate("/dashboard", {
                     state: {
                         user_email: props.email,
-                        user_type : props.type
+                        user_type : props.type,
+                        user_id : props.id
                     }
                 })
             }}>
@@ -27,30 +28,31 @@ return(
                 </ListItemIcon>
             </div>
         </ListItemButton>
-        <ListItemButton>
-            <p className="drawer-list-item-text">سفارش بیمه</p>
-            <div className="drawer-list-item-icon">
-                <ListItemIcon>
-                    <ShoppingCartIcon />
-                </ListItemIcon>
-            </div>
-        </ListItemButton>
         <ListItemButton onClick={() => {
-            navigate("/dashboard/settings", {
+            navigate("/dashboard/buy", {
                 state: {
                     user_email: props.email,
-                    user_type : props.type
+                    user_type : props.type,
+                    user_id: props.id
                 }
             })
         }}>
-            <p className="drawer-list-item-text">مشخصات کاربری</p>
+            <p className="drawer-list-item-text">سفارش بیمه</p>
             <div className="drawer-list-item-icon">
                 <ListItemIcon>
                     <ContactEmergencyIcon />
                 </ListItemIcon>
             </div>
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton onClick={() => {
+            navigate("/dashboard/changepassword", {
+                state: {
+                    user_email: props.email,
+                    user_type : props.type,
+                    user_id : props.id
+                }
+            })
+        }}>
             <p className="drawer-list-item-text">تغییر رمز عبور</p>
             <div className="drawer-list-item-icon">
                 <ListItemIcon>

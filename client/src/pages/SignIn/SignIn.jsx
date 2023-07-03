@@ -43,10 +43,11 @@ const Signin = () => {
                             navigate("/dashboard", {
                                 state: {
                                     user_email: email,
-                                    user_type : response.data[0]["user_type"]
+                                    user_type : response.data[0]["user_type"],
+                                    user_id : response.data[0]["user_id"]
                                 }
                             })
-                        }, [4000])
+                        }, [3000])
                         })
                     }
                     else {

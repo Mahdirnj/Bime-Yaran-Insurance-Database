@@ -9,7 +9,7 @@ import GroupAddIcon from '@mui/icons-material/GroupAdd';
 
 import "./Dashboard.css"
 import Divider from "@mui/material/Divider";
-const OwnerListItems = (props) => {
+const ManagerListItems = (props) => {
     const navigate = useNavigate()
 
     return (
@@ -19,15 +19,16 @@ const OwnerListItems = (props) => {
             <Divider sx={{my: 2}}/>
             <ListItemButton
                 onClick={() => {
-                    navigate("/dashboard/admin", {
+                    navigate("/dashboard/employee", {
                         state: {
                             user_email: props.email,
-                            user_type : props.type
+                            user_type : props.type,
+                            user_id: props.id
                         }
                     })
                 }}
             >
-                <p className="drawer-list-item-text">مدیران</p>
+                <p className="drawer-list-item-text">کارمندان</p>
                 <div className="drawer-list-item-icon">
                     <ListItemIcon>
                         <AdminPanelSettingsIcon/>
@@ -39,7 +40,8 @@ const OwnerListItems = (props) => {
                     navigate("/dashboard/branch", {
                         state: {
                             user_email: props.email,
-                            user_type : props.type
+                            user_type : props.type,
+                            user_id: props.id
                         }
                     })
                 }}
@@ -54,4 +56,4 @@ const OwnerListItems = (props) => {
         </React.Fragment>
     )
 }
-export default OwnerListItems
+export default ManagerListItems

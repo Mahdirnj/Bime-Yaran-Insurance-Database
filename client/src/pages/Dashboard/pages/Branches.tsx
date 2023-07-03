@@ -72,7 +72,7 @@ const Branches = () => {
     const [wrongInfo, setWrongInfo] = useState(false)
     useDocumentTitle('پنل کاربری بیمه یاران - شعبه ها')
     const {state} = useLocation();
-    const {user_type, user_email} = state;
+    const {user_type, user_email, user_id} = state;
     const [data, setData] = useState(false)
     const [openRegister, setOpenRegister] = React.useState(false);
     const [openDelete, setOpenDelete] = React.useState(false);
@@ -195,22 +195,23 @@ const Branches = () => {
                     console.log(response)
                     setOpenEdit(false);
                     setWrongInfo(false);
+                    Axios.post("http://localhost:3001/edit-branch", {
+                        branch_id: Number(branch_t),
+                        branch_name: branchName,
+                        branch_phone: branchPhone,
+                        branch_address: branchAddress,
+                        branch_type: bType
+                    }).then((response) => {
+                        console.log(response)
+                        navigate(0)
+                    })
                     navigate(0)
                 }
                 else {
                     setWrongInfo(true)
                 }
             })
-            Axios.post("http://localhost:3001/edit-branch", {
-                branch_id: Number(branch_t),
-                branch_name: branchName,
-                branch_phone: branchPhone,
-                branch_address: branchAddress,
-                branch_type: bType
-            }).then((response) => {
-                console.log(response)
-                navigate(0)
-            })
+
 
         }
         else {
@@ -241,7 +242,7 @@ const Branches = () => {
     return (
         <div>
             <Box sx={{ display: 'flex' }}>
-                <Drawer user_type={user_type} user_email={user_email} />
+                <Drawer user_type={user_type} user_email={user_email} user_id = {user_id} />
                 <div style={{position: "absolute", top:"20%", left: "45%"}}>
                     <Button onClick={handleRegisterClickOpen}
                     className="m-btn" variant="contained" startIcon={<AddIcon />}>ثبت شعبه</Button>
@@ -262,7 +263,7 @@ const Branches = () => {
                 onClose={handleRegisterClickClose}
                 aria-labelledby="responsive-dialog-title"
             >
-                    <h1 className="add-branch-title">ثبت شعبه بیمه جدید</h1>
+                    <h1 className="branch-title">ثبت شعبه بیمه جدید</h1>
                 <DialogContent>
                     <div className="md:flex items-center">
                         <div className="md:w-72 flex flex-col contact-item">
@@ -325,7 +326,7 @@ const Branches = () => {
                 onClose={handleEditClickClose}
                 aria-labelledby="responsive-dialog-title"
             >
-                <h1 className="add-branch-title">تغییر شعبه</h1>
+                <h1 className="branch-title">تغییر شعبه</h1>
                 <DialogContent>
                     <div className="md:flex items-center">
                         <div className="md:w-72 flex flex-col contact-item">
@@ -384,7 +385,7 @@ const Branches = () => {
                 onClose={handleDeleteClickClose}
                 aria-labelledby="responsive-dialog-title"
             >
-                <h1 className="add-branch-title">حذف شعبه</h1>
+                <h1 className="branch-title">حذف شعبه</h1>
                 <DialogContent>
                     <div className="md:flex items-center">
                         <div className="md:w-72 flex flex-col contact-item">

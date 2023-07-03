@@ -8,11 +8,15 @@ import About from "../pages/About/About";
 import Branch from "../pages/Branch/Branch";
 import CarInsurance from "../pages/Car-Insurance/CarInsurance";
 import FireInsurance from "../pages/Fire-Insurance/FireInsurance";
-import LiabilityInsurance from "../pages/Liability-Insurance/LiabilityInsurance";
 import LifeInsurance from "../pages/Life-Insurance/LifeInsurance";
 
 import Branches from "../pages/Dashboard/pages/Branches"
-import Admin from "../pages/Dashboard/pages/Admin"
+import Employees from "../pages/Dashboard/pages/Employees"
+import Transactions from "../pages/Dashboard/pages/Transaction"
+import Password from "../pages/Dashboard/pages/Password"
+import Buy from "../pages/Dashboard/pages/Buy"
+import ApproveContract from "../pages/Dashboard/pages/ApproveContract"
+import Contracts from "../pages/Dashboard/pages/Contracts"
 const AppRoute = () => {
     return (
         <Routes>
@@ -25,12 +29,16 @@ const AppRoute = () => {
             <Route path={'/branch'} element={<Branch />} />
             <Route path={'/CarInsurance'} element={<CarInsurance />} />
             <Route path={'/FireInsurance'} element={<FireInsurance />} />
-            <Route path={'/LiabilityInsurance'} element={<LiabilityInsurance />} />
             <Route path={'/LifeInsurance'} element={<LifeInsurance />} />
 
 
             <Route path={'/dashboard/branch'} element={<Branches />} />
-            <Route path={'/dashboard/admin'} element={<Admin />} />
+            <Route path={'/dashboard/employee'} element={<Employees />} />
+            <Route path={'/dashboard/transaction'} element={<Transactions />} />
+            <Route path={'/dashboard/changepassword'} element={<Password />} />
+            <Route path={'/dashboard/buy'} element={<Buy />} />
+            <Route path={'/dashboard/ApproveContract'} element={<ApproveContract />} />
+            <Route path={'/dashboard/contracts'} element={<Contracts />} />
 
 
         </Routes>

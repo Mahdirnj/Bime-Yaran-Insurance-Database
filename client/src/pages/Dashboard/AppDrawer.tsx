@@ -109,6 +109,7 @@ const AppDrawer = (props) => {
             <DrawerHeader>
                 <div>
                     <div className="user-icon">
+
                         <Avatar>
                             {props.user_type == "user" ? <UserCircleIcon /> : (props.user_type == "admin" ?
                                 <ManageAccountsIcon /> : <LocalPoliceIcon />)}
@@ -130,7 +131,7 @@ const AppDrawer = (props) => {
                 </div>
             </DrawerHeader>
             <Divider />
-            <DrawerAccess user_email = {props.user_email} user_type = {props.user_type} />
+            <DrawerAccess user_email = {props.user_email} user_type = {props.user_type} user_id = {props.user_id} />
         </Drawer>
         </div>
     )

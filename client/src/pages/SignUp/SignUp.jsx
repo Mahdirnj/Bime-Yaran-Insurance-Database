@@ -1,12 +1,10 @@
 import {useNavigate} from "react-router-dom";
 import useDocumentTitle from "../../hook/useDocumentTitle"
 import HomeIcon from '@mui/icons-material/Home';
-import {useEffect, useState} from "react";
-import { v4 as uuidv4 } from "uuid"
+import {useState} from "react";
 import "./SignUp.css"
 import Axios from "axios";
 const SignUp = () => {
-    const [userId, setUserId] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [notRegisterable, setNotRegisterable] = useState(false)
@@ -26,20 +24,25 @@ const SignUp = () => {
                 setNotRegisterable(false)
                 setRegistered(true)
                 Axios.post("http://localhost:3001/register-user", {
-                    user_id: userId,
                     email: email,
                     password: password
                 }).then((response) => {
                     console.log(response)
                 })
-                setTimeout(() => {
-                    navigate("/dashboard", {
-                        state: {
-                            user_email: email,
-                            user_type : userType
-                        }
-                    })
-                }, [4000])
+                Axios.post("http://localhost:3001/check-user-type", {
+                    email: email
+                }).then((response) => {
+                    setTimeout(() => {
+                        navigate("/dashboard", {
+                            state: {
+                                user_email: email,
+                                user_type : userType,
+                                user_id : response.data[0]["user_id"]
+                            }
+                        })
+                    }, [3000])
+                })
+
             }
         })
     }
@@ -90,11 +93,6 @@ const SignUp = () => {
                                     </div>)
                                     : null}
                                 <button
-                                    onClick={() => {
-                                        const user_id = uuidv4();
-                                        setUserId(user_id)
-                                    }
-                                    }
                                     type="submit"
                                         className="w-full text-white bg-indigo-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                     ثبت نام
