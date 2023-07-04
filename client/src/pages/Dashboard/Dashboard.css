@@ -1,9 +1,7 @@
-
 .dashboard-toolbar {
-   background-color: white;
+    background-color: white;
     color: #1a1a1a;
     justify-content: space-between;
-
 }
 .dashboard-toolbar h1 {
     font-size: 1.4rem;
@@ -47,12 +45,16 @@
     background-color: rgb(234, 236, 239);
     padding: 20px;
     border-radius: 10px;
+}
+.active-insurance-container-child {
     display: flex;
     justify-content: space-between;
-
+}
+.active-insurance-title {
+    margin-bottom: 30px;
 }
 .insurance-item {
-    width: 30%;
+    width: 23%;
     padding: 20px;
     border-radius: 10px;
     background-color: #e1e6e6;

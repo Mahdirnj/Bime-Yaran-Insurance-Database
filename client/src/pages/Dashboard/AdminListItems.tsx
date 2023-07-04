@@ -1,33 +1,35 @@
-import * as React from 'react';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
-import {useNavigate} from "react-router-dom";
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import GroupIcon from '@mui/icons-material/Group';
-import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import AddTaskIcon from '@mui/icons-material/AddTask';
-import "./Dashboard.css"
-import Divider from "@mui/material/Divider";
-import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import * as React from 'react'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong'
+import { useNavigate } from 'react-router-dom'
+import DashboardIcon from '@mui/icons-material/Dashboard'
+import GroupIcon from '@mui/icons-material/Group'
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks'
+import AddTaskIcon from '@mui/icons-material/AddTask'
+import './Dashboard.css'
+import Divider from '@mui/material/Divider'
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd'
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney'
 const AdminListItems = (props) => {
     const navigate = useNavigate()
 
     return (
         <React.Fragment>
             <Divider sx={{ my: 2 }} />
-            <p style={{textAlign: 'center'}}>دسترسی مدیر</p>
+            <p style={{ textAlign: 'center' }}>دسترسی مدیر</p>
             <Divider sx={{ my: 2 }} />
-            <ListItemButton onClick={() => {
-                navigate("/dashboard/users", {
-                    state: {
-                        user_email: props.email,
-                        user_type : props.type,
-                        user_id : props.id
-                    }
-                })
-            }}>
+            <ListItemButton
+                onClick={() => {
+                    navigate('/dashboard/users', {
+                        state: {
+                            user_email: props.email,
+                            user_type: props.type,
+                            user_id: props.id,
+                        },
+                    })
+                }}
+            >
                 <p className="drawer-list-item-text">کاربران</p>
                 <div className="drawer-list-item-icon">
                     <ListItemIcon>
@@ -35,15 +37,17 @@ const AdminListItems = (props) => {
                     </ListItemIcon>
                 </div>
             </ListItemButton>
-            <ListItemButton onClick={() => {
-                navigate("/dashboard/clients", {
-                    state: {
-                        user_email: props.email,
-                        user_type : props.type,
-                        user_id : props.id
-                    }
-                })
-            }}>
+            <ListItemButton
+                onClick={() => {
+                    navigate('/dashboard/clients', {
+                        state: {
+                            user_email: props.email,
+                            user_type: props.type,
+                            user_id: props.id,
+                        },
+                    })
+                }}
+            >
                 <p className="drawer-list-item-text">مشتریان</p>
                 <div className="drawer-list-item-icon">
                     <ListItemIcon>
@@ -53,12 +57,12 @@ const AdminListItems = (props) => {
             </ListItemButton>
             <ListItemButton
                 onClick={() => {
-                    navigate("/dashboard/contracts", {
+                    navigate('/dashboard/contracts', {
                         state: {
                             user_email: props.email,
-                            user_type : props.type,
-                            user_id : props.id
-                        }
+                            user_type: props.type,
+                            user_id: props.id,
+                        },
                     })
                 }}
             >
@@ -71,12 +75,12 @@ const AdminListItems = (props) => {
             </ListItemButton>
             <ListItemButton
                 onClick={() => {
-                    navigate("/dashboard/ApproveContract", {
+                    navigate('/dashboard/ApproveContract', {
                         state: {
                             user_email: props.email,
-                            user_type : props.type,
-                            user_id : props.id
-                        }
+                            user_type: props.type,
+                            user_id: props.id,
+                        },
                     })
                 }}
             >
@@ -89,12 +93,12 @@ const AdminListItems = (props) => {
             </ListItemButton>
             <ListItemButton
                 onClick={() => {
-                    navigate("/dashboard/ApproveDamage", {
+                    navigate('/dashboard/ApproveDamage', {
                         state: {
                             user_email: props.email,
-                            user_type : props.type,
-                            user_id : props.id
-                        }
+                            user_type: props.type,
+                            user_id: props.id,
+                        },
                     })
                 }}
             >
@@ -105,15 +109,17 @@ const AdminListItems = (props) => {
                     </ListItemIcon>
                 </div>
             </ListItemButton>
-            <ListItemButton onClick={() => {
-                navigate("/dashboard/transaction", {
-                    state: {
-                        user_email: props.email,
-                        user_type : props.type,
-                        user_id : props.id
-                    }
-                })
-            }}>
+            <ListItemButton
+                onClick={() => {
+                    navigate('/dashboard/transaction', {
+                        state: {
+                            user_email: props.email,
+                            user_type: props.type,
+                            user_id: props.id,
+                        },
+                    })
+                }}
+            >
                 <p className="drawer-list-item-text">تراکنش ها</p>
                 <div className="drawer-list-item-icon">
                     <ListItemIcon>

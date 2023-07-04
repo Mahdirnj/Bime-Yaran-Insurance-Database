@@ -1,27 +1,33 @@
-import * as React from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
-import "./footer.css";
+import * as React from 'react'
+import CssBaseline from '@mui/material/CssBaseline'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Container from '@mui/material/Container'
+import Link from '@mui/material/Link'
+import './footer.css'
 function Copyright() {
     return (
-        <Typography className="footer-text" style ={{color : 'white'}} variant="body2">
-            {'تمامی حقوق مادی و معنوی این وب سایت متعلق به دانشگاه صنعتی ارومیه می باشد ©'}
+        <Typography
+            className="footer-text"
+            style={{ color: 'white' }}
+            variant="body2"
+        >
+            {
+                'تمامی حقوق مادی و معنوی این وب سایت متعلق به دانشگاه صنعتی ارومیه می باشد ©'
+            }
             {new Date().getFullYear()}
         </Typography>
-    );
+    )
 }
 
 // TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
+const defaultTheme = createTheme()
 
 const Footer = () => {
     return (
         <div className="footer">
-        <ThemeProvider theme={defaultTheme}>
+            <ThemeProvider theme={defaultTheme}>
                 <CssBaseline />
                 <Box
                     component="footer"
@@ -39,8 +45,8 @@ const Footer = () => {
                         <Copyright />
                     </Container>
                 </Box>
-        </ThemeProvider>
+            </ThemeProvider>
         </div>
-    );
+    )
 }
 export default Footer

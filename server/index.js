@@ -622,6 +622,35 @@ app.post("/approve-damage", (req, res) => {
             res.send(result)
         })
 })
+
+
+
+// Dashboard - get car insurances
+app.post("/get-car-insurance-by-client", (req, res) => {
+    const client_id = req.body.client_id
+    con.query("SELECT * FROM car_users WHERE client_id = ?", [client_id], (err, result) => {
+        if (result) {
+            res.send(result)
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
+
+
+// Dashboard - get fire insurances
+app.post("/get-fire-insurance-by-client", (req, res) => {
+    const client_id = req.body.client_id
+    con.query("SELECT * FROM fire_users WHERE client_id = ?", [client_id], (err, result) => {
+        if (result) {
+            res.send(result)
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
 app.listen(3001, () => {
     console.log("MySQL Database server running...");
 })
