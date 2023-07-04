@@ -651,6 +651,70 @@ app.post("/get-fire-insurance-by-client", (req, res) => {
         }
     })
 })
+
+app.post("/get-health-insurance-by-client", (req, res) => {
+    const client_id = req.body.client_id
+    con.query("SELECT * FROM health_users WHERE client_id = ?", [client_id], (err, result) => {
+        if (result) {
+            res.send(result)
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
+
+
+// Dashboard - get repay by id
+app.post("/get-repay", (req, res) => {
+    const repay_id = req.body.repay_id
+    con.query("SELECT * FROM repay WHERE repay_id = ?",[repay_id], (err, result) => {
+        if (result) {
+            res.send(result)
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
+
+// Dashboard - get repay by id
+app.post("/get-user", (req, res) => {
+    const client_id = req.body.client_id
+    con.query("SELECT * FROM client WHERE client_id = ?",[client_id], (err, result) => {
+        if (result) {
+            res.send(result)
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
+
+// Dashboard - get repay by id
+app.post("/get-contract", (req, res) => {
+    const contract_id = req.body.contract_id
+    con.query("SELECT * FROM contract WHERE contract_id = ?",[contract_id], (err, result) => {
+        if (result) {
+            res.send(result)
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
+
+app.post("/get-transaction", (req, res) => {
+    const transaction_id = req.body.transaction_id
+    con.query("SELECT * FROM transaction WHERE transaction_id = ?",[transaction_id], (err, result) => {
+        if (result) {
+            res.send(result)
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
 app.listen(3001, () => {
     console.log("MySQL Database server running...");
 })

@@ -1,8 +1,8 @@
 .contact-form input,
 .contact-form textarea {
-    border-radius: 8px;
+  border-radius: 8px;
 }
 input:focus,
 textarea:focus {
-    outline: none;
+  outline: none;
 }
