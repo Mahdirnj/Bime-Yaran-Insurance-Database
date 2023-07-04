@@ -1,4 +1,4 @@
-import "./Contracts.css"
+import "./Users.css"
 import Box from "@mui/material/Box";
 import Drawer from "../AppDrawer";
 import useDocumentTitle from "../../../hook/useDocumentTitle"
@@ -20,7 +20,7 @@ const Users = () => {
     const {user_type, user_email, user_id} = state;
     const [data, setData] = useState(false)
     useEffect(() => {
-        Axios.post("http://localhost:3001/contracts").then(
+        Axios.post("http://localhost:3001/users").then(
             (response) => {
                 users = []
                 response.data.forEach((transData) => {
@@ -59,8 +59,10 @@ const Users = () => {
                                     key={user.user_id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell align="center"><p className={user.user_type}>{user.user_type}</p></TableCell>
-                                    <TableCell align="center"><p>{user.user_email}</p></TableCell>
+                                    <TableCell align="center">{user.user_type == "user" ? <p className={user.user_type}>کاربر</p> :
+                                        (user.user_type == "admin" ? <p className={user.user_type}>مدیر</p> : (user.user_type == "manager" ? <p className={user.user_type}>ناظر</p> :
+                                            <p className={user.user_type}>رییس</p>))}</TableCell>
+                                    <TableCell align="center"><p>{user.email}</p></TableCell>
                                     <TableCell align="center"><p>{user.user_id}</p></TableCell>
                                 </TableRow>
                             ))}

@@ -13,22 +13,35 @@ import * as React from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import Axios from "axios";
-let contracts = []
-const Contracts = () => {
-    useDocumentTitle('پنل کاربری بیمه یاران - بیمه نامه ها ')
+import {Button} from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import {Verified, VerifiedUser} from "@mui/icons-material";
+let damage = []
+const ApproveDamage = () => {
+    const navigate = useNavigate()
+    const handleApprove = (repay_id) => {
+        console.log(repay_id)
+        Axios.post("http://localhost:3001/approve-damage", {
+            repay_id: repay_id
+        }).then((response) => {
+            console.log(response)
+            navigate(0)
+        })
+    }
+    useDocumentTitle('پنل کاربری بیمه یاران - تایید خسارت ')
     const {state} = useLocation();
     const {user_type, user_email, user_id} = state;
     const [data, setData] = useState(false)
     useEffect(() => {
-        Axios.post("http://localhost:3001/contracts").then(
+        Axios.post("http://localhost:3001/get-pending-damage").then(
             (response) => {
-                contracts = []
+                damage = []
                 response.data.forEach((transData) => {
-                    contracts.push(transData)
+                    damage.push(transData)
                     setData(true)
                 })
             })
-        console.log(contracts)
+        console.log(damage)
     }, [])
 
 
@@ -43,38 +56,28 @@ const Contracts = () => {
                         <TableHead className="table-head">
                             <TableRow>
                                 <TableCell className="table-cell" align="center"><p>
-                                    وضعیت بیمه
-                                </p></TableCell>
-                                <TableCell className="table-cell" align="center"><p>
-                                    نوع بیمه
-                                </p></TableCell>
-                                <TableCell className="table-cell" align="center"><p>
-                                    شماره تراکنش
-                                </p></TableCell>
-                                <TableCell className="table-cell" align="center"><p>
-                                    کد شعبه
-                                </p></TableCell>
-                                <TableCell className="table-cell" align="center"><p>
-                                    شماره مشتری
+                                    تایید خسارت
                                 </p></TableCell>
                                 <TableCell className="table-cell" align="center"><p>
                                     شماره بیمه
                                 </p></TableCell>
+                                <TableCell className="table-cell" align="center"><p>
+                                   شماره مشتری
+                                </p></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {contracts.map((contract) => (
+                            {damage.map((dmg) => (
                                 <TableRow
-                                    key={contract.contract_id}
+                                    key={dmg.repay_id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell align="center">{contract.contract_status == "pending" ? <p className={contract.contract_status}>در انتظار تایید</p>:
-                                        <p className={contract.contract_status}>تایید شده</p>}</TableCell>
-                                    <TableCell align="center"><p>{contract.insurance_id}</p></TableCell>
-                                    <TableCell align="center"><p>{contract.transaction_id}</p></TableCell>
-                                    <TableCell align="center"><p>{contract.branch_id}</p></TableCell>
-                                    <TableCell align="center"><p>{contract.client_id}</p></TableCell>
-                                    <TableCell align="center"><p>{contract.contract_id}</p></TableCell>
+                                    <TableCell align="center"><Button size="small" onClick={ () => {
+                                        handleApprove(dmg.repay_id)
+                                    }}
+                                                                      className="m-btn" variant="contained" startIcon={<VerifiedUser />}>تایید خسارت</Button></TableCell>
+                                    <TableCell align="center"><p>{dmg.contract_id}</p></TableCell>
+                                    <TableCell align="center"><p>{dmg.client_id}</p></TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
@@ -84,4 +87,4 @@ const Contracts = () => {
         </div>
     )
 }
-export default Contracts
+export default ApproveDamage

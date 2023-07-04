@@ -1,15 +1,14 @@
 .pending {
     width: 100px;
     margin: auto;
-    padding: 5px;
+    padding: 8px;
     background-color: #f8f5b0;
     border-radius: 20px;
-    font-family: 'Poppins', sans-serif !important;
 }
 .completed {
     width: 100px;
     margin: auto;
-    padding: 5px;
+    padding: 8px;
     background-color: #8ada76;
     border-radius: 20px;
 }

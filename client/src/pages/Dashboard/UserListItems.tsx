@@ -3,10 +3,11 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import {useNavigate} from "react-router-dom";
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import "./Dashboard.css"
+import LogoutIcon from "@mui/icons-material/Logout";
 const userListItems = (props) => {
     const navigate = useNavigate()
 return(
@@ -45,6 +46,22 @@ return(
             </div>
         </ListItemButton>
         <ListItemButton onClick={() => {
+            navigate("/dashboard/damage", {
+                state: {
+                    user_email: props.email,
+                    user_type : props.type,
+                    user_id: props.id
+                }
+            })
+        }}>
+            <p className="drawer-list-item-text">درخواست خسارت</p>
+            <div className="drawer-list-item-icon">
+                <ListItemIcon>
+                    <AddBusinessIcon />
+                </ListItemIcon>
+            </div>
+        </ListItemButton>
+        <ListItemButton onClick={() => {
             navigate("/dashboard/changepassword", {
                 state: {
                     user_email: props.email,
@@ -57,6 +74,19 @@ return(
             <div className="drawer-list-item-icon">
                 <ListItemIcon>
                     <VpnKeyIcon />
+                </ListItemIcon>
+            </div>
+        </ListItemButton>
+        <ListItemButton
+            onClick={() => {
+                navigate("/",{ replace: true })
+                navigate(0)
+            }}
+        >
+            <p className="drawer-list-item-text">خروج از حساب</p>
+            <div className="drawer-list-item-icon">
+                <ListItemIcon>
+                    <LogoutIcon/>
                 </ListItemIcon>
             </div>
         </ListItemButton>

@@ -3,10 +3,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import {useNavigate} from "react-router-dom";
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
-
+import LogoutIcon from '@mui/icons-material/Logout';
 import "./Dashboard.css"
 import Divider from "@mui/material/Divider";
 const ManagerListItems = (props) => {

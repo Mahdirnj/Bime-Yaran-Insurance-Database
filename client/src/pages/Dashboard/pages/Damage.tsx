@@ -1,4 +1,4 @@
-import "./Contracts.css"
+import "./Damage.css"
 import Box from "@mui/material/Box";
 import Drawer from "../AppDrawer";
 import useDocumentTitle from "../../../hook/useDocumentTitle"
@@ -12,23 +12,47 @@ import Paper from '@mui/material/Paper';
 import * as React from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import Axios from "axios";
+import {Button} from "@mui/material";
+import {Verified, VerifiedUser} from "@mui/icons-material";
 let contracts = []
-const Contracts = () => {
-    useDocumentTitle('پنل کاربری بیمه یاران - بیمه نامه ها ')
+const Damage = () => {
+    const navigate = useNavigate()
+
     const {state} = useLocation();
     const {user_type, user_email, user_id} = state;
+    useDocumentTitle('پنل کاربری بیمه یاران - درخواست خسارت ')
+    const handleDamage = (contract_id) => {
+        Axios.post("http://localhost:3001/check-client-id", {
+            user_id: user_id
+        }).then((response) => {
+            let cl_id = response.data[0]["client_id"]
+            Axios.post("http://localhost:3001/add-repay", {
+                contract_id: contract_id,
+                client_id: cl_id,
+                repay_status: "pending"
+            }).then((response) => {
+                console.log(response)
+            })
+        })
+    }
     const [data, setData] = useState(false)
     useEffect(() => {
-        Axios.post("http://localhost:3001/contracts").then(
-            (response) => {
-                contracts = []
+        Axios.post("http://localhost:3001/check-client-id", {
+            user_id: user_id
+        }).then((response) => {
+            let cli_id = response.data[0]["client_id"]
+            Axios.post("http://localhost:3001/user-contract", {
+                client_id: cli_id
+            }).then((response) => {
                 response.data.forEach((transData) => {
                     contracts.push(transData)
                     setData(true)
                 })
             })
-        console.log(contracts)
+            console.log(contracts)
+        })
     }, [])
 
 
@@ -43,19 +67,13 @@ const Contracts = () => {
                         <TableHead className="table-head">
                             <TableRow>
                                 <TableCell className="table-cell" align="center"><p>
-                                    وضعیت بیمه
+                                   درخواست خسارت
                                 </p></TableCell>
                                 <TableCell className="table-cell" align="center"><p>
                                     نوع بیمه
                                 </p></TableCell>
                                 <TableCell className="table-cell" align="center"><p>
-                                    شماره تراکنش
-                                </p></TableCell>
-                                <TableCell className="table-cell" align="center"><p>
                                     کد شعبه
-                                </p></TableCell>
-                                <TableCell className="table-cell" align="center"><p>
-                                    شماره مشتری
                                 </p></TableCell>
                                 <TableCell className="table-cell" align="center"><p>
                                     شماره بیمه
@@ -68,12 +86,12 @@ const Contracts = () => {
                                     key={contract.contract_id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell align="center">{contract.contract_status == "pending" ? <p className={contract.contract_status}>در انتظار تایید</p>:
-                                        <p className={contract.contract_status}>تایید شده</p>}</TableCell>
+                                    <TableCell align="center"><Button size="small" onClick={ () => {
+                                        handleDamage(contract.contract_id)
+                                    }}
+                                                                      className="m-btn" color="secondary" variant="contained" startIcon={<AttachMoneyIcon />}>درخواست خسارت</Button></TableCell>
                                     <TableCell align="center"><p>{contract.insurance_id}</p></TableCell>
-                                    <TableCell align="center"><p>{contract.transaction_id}</p></TableCell>
                                     <TableCell align="center"><p>{contract.branch_id}</p></TableCell>
-                                    <TableCell align="center"><p>{contract.client_id}</p></TableCell>
                                     <TableCell align="center"><p>{contract.contract_id}</p></TableCell>
                                 </TableRow>
                             ))}
@@ -84,4 +102,4 @@ const Contracts = () => {
         </div>
     )
 }
-export default Contracts
+export default Damage

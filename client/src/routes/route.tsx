@@ -17,6 +17,10 @@ import Password from "../pages/Dashboard/pages/Password"
 import Buy from "../pages/Dashboard/pages/Buy"
 import ApproveContract from "../pages/Dashboard/pages/ApproveContract"
 import Contracts from "../pages/Dashboard/pages/Contracts"
+import Users from "../pages/Dashboard/pages/Users"
+import Clients from "../pages/Dashboard/pages/Clients"
+import Damage from "../pages/Dashboard/pages/Damage"
+import ApproveDamage from "../pages/Dashboard/pages/ApproveDamage"
 const AppRoute = () => {
     return (
         <Routes>
@@ -39,6 +43,10 @@ const AppRoute = () => {
             <Route path={'/dashboard/buy'} element={<Buy />} />
             <Route path={'/dashboard/ApproveContract'} element={<ApproveContract />} />
             <Route path={'/dashboard/contracts'} element={<Contracts />} />
+            <Route path={'/dashboard/users'} element={<Users />} />
+            <Route path={'/dashboard/clients'} element={<Clients />} />
+            <Route path={'/dashboard/damage'} element={<Damage />} />
+            <Route path={'/dashboard/ApproveDamage'} element={<ApproveDamage />} />
 
 
         </Routes>

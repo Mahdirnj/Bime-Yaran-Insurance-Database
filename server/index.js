@@ -556,6 +556,72 @@ app.post("/users", (req, res) => {
         }
     })
 })
+
+// ADMIN - Get clients
+app.post("/clients", (req, res) => {
+    con.query("SELECT * FROM client", (err, result) => {
+        if (result) {
+            res.send(result)
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
+
+
+// ADMIN - Get current insurances
+app.post("/user-contract", (req, res) => {
+    const client_id = req.body.client_id
+    con.query("SELECT * FROM contract WHERE client_id = ?", [client_id], (err, result) => {
+        if (result) {
+            res.send(result)
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
+
+
+// ADD REPAY
+app.post("/add-repay", (req, res) => {
+    const contract_id = req.body.contract_id
+    const client_id = req.body.client_id
+    const repay_status = req.body.repay_status
+    con.query("INSERT INTO repay (contract_id, client_id, repay_status) VALUES (?, ?, ?)",
+        [contract_id, client_id, repay_status], (err, result) => {
+            if(result){
+                res.send(result);
+            }else{
+                res.send(err)
+            }
+        })
+})
+
+
+// Admin - Get not approved damages
+app.post("/get-pending-damage", (req, res) => {
+    con.query("SELECT * FROM repay WHERE repay_status = ?", ["pending"], (err, result) => {
+        if (result) {
+            res.send(result)
+        }
+        else {
+            res.send(err)
+        }
+    })
+})
+
+
+
+// DASHBOARD - approve damage
+app.post("/approve-damage", (req, res) => {
+    const repay_id = req.body.repay_id
+    con.query("UPDATE repay SET repay_status = ? WHERE repay_id = ?"
+        , ["completed", repay_id], (err, result) => {
+            res.send(result)
+        })
+})
 app.listen(3001, () => {
     console.log("MySQL Database server running...");
 })

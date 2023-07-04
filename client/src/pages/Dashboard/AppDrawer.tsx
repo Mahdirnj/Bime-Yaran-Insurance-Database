@@ -12,7 +12,10 @@ import List from "@mui/material/List";
 import * as React from "react";
 import {styled, useTheme} from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
+import GradeIcon from '@mui/icons-material/Grade';
 import Toolbar from "@mui/material/Toolbar";
+import { red, deepPurple, cyan, green } from '@mui/material/colors';
+
 import MenuIcon from "@mui/icons-material/Menu";
 const drawerWidth = 240;
 import "./Dashboard.css"
@@ -109,11 +112,8 @@ const AppDrawer = (props) => {
             <DrawerHeader>
                 <div>
                     <div className="user-icon">
-
-                        <Avatar>
-                            {props.user_type == "user" ? <UserCircleIcon /> : (props.user_type == "admin" ?
-                                <ManageAccountsIcon /> : <LocalPoliceIcon />)}
-                        </Avatar>
+                            {props.user_type == "user" ?<Avatar sx={{ bgcolor: cyan[500] }}> <UserCircleIcon  /></Avatar> : (props.user_type == "admin" ?
+                                <Avatar sx={{ bgcolor: green[500] }}><ManageAccountsIcon /></Avatar> : (props.user_type =="manager" ? <Avatar sx={{ bgcolor: red[500] }}> <LocalPoliceIcon /></Avatar> : <Avatar sx={{ bgcolor: deepPurple[500] }}><GradeIcon  /></Avatar>))}
                     </div>
                     <div className="user-email">
                         <LinesEllipsis
@@ -124,10 +124,8 @@ const AppDrawer = (props) => {
                             basedOn='words'
                         />
                     </div>
-                    {props.user_type == "user" ? <p className="user-role bg-sky-500 text-light">کاربر</p> : (props.user_type == "admin" ? <p className="user-role bg-yellow-500 text-light">مدیر</p>
-                        : <p className="user-role bg-red-500 text-light">ريیس </p>)}
-
-
+                    {props.user_type == "user" ? <p className="user-role bg-sky-500 text-light">کاربر</p> : (props.user_type == "admin" ? <p className="user-role bg-green-500 text-light">مدیر</p>
+                        : (props.user_type == "manager" ? <p className="user-role bg-red-500 text-light">ناظر </p> : <p className="user-role bg-violet-600 text-light">رییس </p>))}
                 </div>
             </DrawerHeader>
             <Divider />

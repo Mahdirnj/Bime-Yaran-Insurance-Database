@@ -9,6 +9,8 @@ import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import "./Dashboard.css"
 import Divider from "@mui/material/Divider";
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 const AdminListItems = (props) => {
     const navigate = useNavigate()
 
@@ -30,6 +32,22 @@ const AdminListItems = (props) => {
                 <div className="drawer-list-item-icon">
                     <ListItemIcon>
                         <GroupIcon />
+                    </ListItemIcon>
+                </div>
+            </ListItemButton>
+            <ListItemButton onClick={() => {
+                navigate("/dashboard/clients", {
+                    state: {
+                        user_email: props.email,
+                        user_type : props.type,
+                        user_id : props.id
+                    }
+                })
+            }}>
+                <p className="drawer-list-item-text">مشتریان</p>
+                <div className="drawer-list-item-icon">
+                    <ListItemIcon>
+                        <AssignmentIndIcon />
                     </ListItemIcon>
                 </div>
             </ListItemButton>
@@ -66,6 +84,24 @@ const AdminListItems = (props) => {
                 <div className="drawer-list-item-icon">
                     <ListItemIcon>
                         <AddTaskIcon />
+                    </ListItemIcon>
+                </div>
+            </ListItemButton>
+            <ListItemButton
+                onClick={() => {
+                    navigate("/dashboard/ApproveDamage", {
+                        state: {
+                            user_email: props.email,
+                            user_type : props.type,
+                            user_id : props.id
+                        }
+                    })
+                }}
+            >
+                <p className="drawer-list-item-text">تایید خسارت</p>
+                <div className="drawer-list-item-icon">
+                    <ListItemIcon>
+                        <AttachMoneyIcon />
                     </ListItemIcon>
                 </div>
             </ListItemButton>

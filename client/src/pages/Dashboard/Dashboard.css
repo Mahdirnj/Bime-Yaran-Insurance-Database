@@ -19,7 +19,7 @@
 }
 .user-email {
     margin-top: 10px;
-    margin-left: 20px;
+    text-align: center;
 }
 
 .drawer-list-item-icon {
@@ -30,14 +30,7 @@
 .drawer-list-item-text {
     margin: auto;
 }
-.active-insurance-container {
-    margin: auto;
-    width: 60%;
-    margin-top: 150px;
-    background-color: rgb(234, 235, 237);
-    padding: 20px;
-    border-radius: 10px;
-}
+
 .user-role {
     margin: auto;
     margin-top: 10px;
@@ -46,4 +39,21 @@
     width: 80px;
     padding: 3px;
     border-radius: 50px;
+}
+.active-insurance-container {
+    width: 80%;
+    margin-left: 10px;
+    margin-top: 150px;
+    background-color: rgb(234, 236, 239);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.insurance-item {
+    width: 30%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #e1e6e6;
 }

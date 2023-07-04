@@ -1,4 +1,4 @@
-import "./Contracts.css"
+import "./Users.css"
 import Box from "@mui/material/Box";
 import Drawer from "../AppDrawer";
 import useDocumentTitle from "../../../hook/useDocumentTitle"
@@ -13,22 +13,22 @@ import * as React from "react";
 import {useLocation, useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import Axios from "axios";
-let contracts = []
-const Contracts = () => {
-    useDocumentTitle('پنل کاربری بیمه یاران - بیمه نامه ها ')
+let clients = []
+const Clients = () => {
+    useDocumentTitle('پنل کاربری بیمه یاران - مشتریان ')
     const {state} = useLocation();
     const {user_type, user_email, user_id} = state;
     const [data, setData] = useState(false)
     useEffect(() => {
-        Axios.post("http://localhost:3001/contracts").then(
+        Axios.post("http://localhost:3001/clients").then(
             (response) => {
-                contracts = []
+                clients = []
                 response.data.forEach((transData) => {
-                    contracts.push(transData)
+                    clients.push(transData)
                     setData(true)
                 })
             })
-        console.log(contracts)
+        console.log(clients)
     }, [])
 
 
@@ -43,38 +43,41 @@ const Contracts = () => {
                         <TableHead className="table-head">
                             <TableRow>
                                 <TableCell className="table-cell" align="center"><p>
-                                    وضعیت بیمه
+                                    تاریخ تولد
                                 </p></TableCell>
                                 <TableCell className="table-cell" align="center"><p>
-                                    نوع بیمه
+                                    شماره تلفن
                                 </p></TableCell>
                                 <TableCell className="table-cell" align="center"><p>
-                                    شماره تراکنش
+                                    آدرس
                                 </p></TableCell>
                                 <TableCell className="table-cell" align="center"><p>
-                                    کد شعبه
+                                    نام خانوادگی
+                                </p></TableCell>
+                                <TableCell className="table-cell" align="center"><p>
+                                   نام
+                                </p></TableCell>
+                                <TableCell className="table-cell" align="center"><p>
+                                    شماره کاربری
                                 </p></TableCell>
                                 <TableCell className="table-cell" align="center"><p>
                                     شماره مشتری
                                 </p></TableCell>
-                                <TableCell className="table-cell" align="center"><p>
-                                    شماره بیمه
-                                </p></TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {contracts.map((contract) => (
+                            {clients.map((client) => (
                                 <TableRow
-                                    key={contract.contract_id}
+                                    key={client.user_id}
                                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                 >
-                                    <TableCell align="center">{contract.contract_status == "pending" ? <p className={contract.contract_status}>در انتظار تایید</p>:
-                                        <p className={contract.contract_status}>تایید شده</p>}</TableCell>
-                                    <TableCell align="center"><p>{contract.insurance_id}</p></TableCell>
-                                    <TableCell align="center"><p>{contract.transaction_id}</p></TableCell>
-                                    <TableCell align="center"><p>{contract.branch_id}</p></TableCell>
-                                    <TableCell align="center"><p>{contract.client_id}</p></TableCell>
-                                    <TableCell align="center"><p>{contract.contract_id}</p></TableCell>
+                                    <TableCell align="center"><p>{client.client_birthday}</p></TableCell>
+                                    <TableCell align="center"><p>{client.client_phone}</p></TableCell>
+                                    <TableCell align="center"><p>{client.client_address}</p></TableCell>
+                                    <TableCell align="center"><p>{client.client_fname}</p></TableCell>
+                                    <TableCell align="center"><p>{client.client_name}</p></TableCell>
+                                    <TableCell align="center"><p>{client.user_id}</p></TableCell>
+                                    <TableCell align="center"><p>{client.client_id}</p></TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>
@@ -84,4 +87,4 @@ const Contracts = () => {
         </div>
     )
 }
-export default Contracts
+export default Clients
